@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Password_Generator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="600">
+        Title="Password Generator" Height="300" Width="700">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <!-- Generate new password -->
+
+        <!-- User password check -->
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <TextBox Name="userPassword" Grid.Row="1" FontSize="30"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border x:Name="redRec" BorderThickness="1" CornerRadius="10,0,0,10" BorderBrush="Black" Background="Red" Height="20" Width="170"/>
+                <Border x:Name="yellowRec" BorderThickness="1" BorderBrush="Black" Background="Yellow" Height="20" Width="170"/>
+                <Border x:Name="greenRec" BorderThickness="1" CornerRadius="0,10,10,0" BorderBrush="Black" Background="green" Height="20" Width="170"/>
+            </StackPanel>
+            <Grid>
+                <TextBlock Text="Weak" Margin="100,0,0,0"/>
+                <TextBlock Text="Strong" Margin="0,0,100,0" HorizontalAlignment="Right"/>
+            </Grid>
+        </StackPanel>
+
     </Grid>
 </Window>
