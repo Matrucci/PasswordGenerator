@@ -34,15 +34,16 @@
         <StackPanel Orientation="Vertical" Grid.Row="1">
             <Line X1="0" Y1="0" X2="700" Y2="0" Stroke="Black" StrokeThickness="2"/>
             <TextBlock Text="Check your password:" HorizontalAlignment="Center"/>
-            <TextBox Name="userPassword" Grid.Row="1" FontSize="30"/>
+            <TextBox Name="userPassword" Text="{Binding UserPassword, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" FontSize="30"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Border x:Name="redRec" BorderThickness="1" CornerRadius="10,0,0,10" BorderBrush="Black" Background="Red" Height="20" Width="170"/>
-                <Border x:Name="yellowRec" BorderThickness="1" BorderBrush="Black" Background="Yellow" Height="20" Width="170"/>
-                <Border x:Name="greenRec" BorderThickness="1" CornerRadius="0,10,10,0" BorderBrush="Black" Background="green" Height="20" Width="170"/>
+                <Border x:Name="redRec" Visibility="{Binding IsWeak}" BorderThickness="1" CornerRadius="10,0,0,10" BorderBrush="Black" Background="Red" Height="20" Width="140"/>
+                <Border x:Name="orangeRec" Visibility="{Binding IsNormal}" BorderThickness="1" BorderBrush="Black" Background="Orange" Height="20" Width="140"/>
+                <Border x:Name="yellowRec" Visibility="{Binding IsModerate}" BorderThickness="1" BorderBrush="Black" Background="Yellow" Height="20" Width="140"/>
+                <Border x:Name="greenRec" Visibility="{Binding IsStrong}" BorderThickness="1" CornerRadius="0,10,10,0" BorderBrush="Black" Background="green" Height="20" Width="140"/>
             </StackPanel>
             <Grid>
-                <TextBlock Text="Weak" Margin="100,0,0,0"/>
-                <TextBlock Text="Strong" Margin="0,0,100,0" HorizontalAlignment="Right"/>
+                <TextBlock Text="Weak" Margin="70,0,0,0"/>
+                <TextBlock Text="Strong" Margin="0,0,70,0" HorizontalAlignment="Right"/>
             </Grid>
         </StackPanel>
 
