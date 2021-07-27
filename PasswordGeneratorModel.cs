@@ -13,11 +13,9 @@ namespace Password_Generator
 
         private string password;
 
-        public PasswordGeneratorModel()
-        {
-
-        }
-
+        /*********************
+         * Password property.
+         ********************/
         public string Password
         {
             get { return this.password; }
@@ -34,24 +32,32 @@ namespace Password_Generator
             }
         }
 
+        /*****************************************************************
+         * Generating a new password according to the given preferences.
+         *****************************************************************/
         public void GeneratePassword(int length, bool allowUpperCase, bool allowNumbers, bool allowSymbols)
         {
-            string valid = "abcdefghijklmnopqrstuvwxyz";
+            //Setting up the valid characters.
+            StringBuilder validBuilder = new StringBuilder();
+            validBuilder.Append("abcdefghijklmnopqrstuvwxyz");
             if (allowNumbers)
             {
-                valid += "0123456789";
+                validBuilder.Append("0123456789");
             }
             if (allowUpperCase)
             {
-                valid += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                validBuilder.Append("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
             }
             if (allowSymbols)
             {
-                valid += "!@#$%^&*";
+                validBuilder.Append("!@#$%^&*");
             }
+            string valid = validBuilder.ToString();
 
             StringBuilder pass = new StringBuilder();
             Random rnd = new Random();
+
+            //Generating a randomized password separated by "-" every 4 characters.
             for (int i = 0; i < length / 4; i++)
             {
                 for (int j = 0; j < 4; j++)
@@ -61,6 +67,7 @@ namespace Password_Generator
                 pass.Append("-");
             }
             pass.Remove(pass.Length - 1, 1);
+            //Updating the generated password.
             Password = pass.ToString();
         }
     }

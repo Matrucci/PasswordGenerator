@@ -26,15 +26,13 @@ namespace Password_Generator
         {
             InitializeComponent();
             this.passwordVM = new PasswordGeneratorVM(this);
-            passwordVM.PropertyChanged += OnPropertyChanged;
+            //Setting up DataContext for data binding.
             DataContext = this.passwordVM;
         }
 
-        public void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-
-        }
-
+        /*****************************************************
+         * Upon clicking, send to the VM to get the password.
+         ****************************************************/
         private void generatePassword_Click(object sender, RoutedEventArgs e)
         {
             int length = Convert.ToInt32(Math.Pow(2, 3 + this.passwordLength.SelectedIndex));

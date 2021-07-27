@@ -11,8 +11,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
+        
         <!-- Generate new password -->
         <StackPanel Orientation="Vertical" Grid.Row="0">
+            <!-- Password preferences -->
             <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Margin="0,10,0,0">
                 <TextBlock Text="Length: "/>
                 <ComboBox Name="passwordLength" Height="20" VerticalAlignment="Top" Margin="10,0,0,0" SelectedIndex="0">
@@ -26,6 +28,7 @@
             </StackPanel>
 
             <Button x:Name="generatePassword" Height="30" Content="Generate password" Width="150" Margin="0,30,0,0" Click="generatePassword_Click"/>
+            <!-- Data binding to the VM to get the generated password from the model -->
             <TextBox x:Name="generatedPassword" TextAlignment="Center" Text="{Binding GeneratedPassword, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30" Margin="0,20,0,0"/>
         </StackPanel>
         
@@ -34,7 +37,9 @@
         <StackPanel Orientation="Vertical" Grid.Row="1">
             <Line X1="0" Y1="0" X2="700" Y2="0" Stroke="Black" StrokeThickness="2"/>
             <TextBlock Text="Check your password:" HorizontalAlignment="Center"/>
-            <TextBox Name="userPassword" Text="{Binding UserPassword, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" FontSize="30"/>
+            
+            <TextBox Name="userPassword" Text="{Binding UserPassword, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Grid.Row="1" FontSize="30"/>
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Border x:Name="redRec" Visibility="{Binding IsWeak}" BorderThickness="1" CornerRadius="10,0,0,10" BorderBrush="Black" Background="Red" Height="20" Width="140"/>
                 <Border x:Name="orangeRec" Visibility="{Binding IsNormal}" BorderThickness="1" BorderBrush="Black" Background="Orange" Height="20" Width="140"/>

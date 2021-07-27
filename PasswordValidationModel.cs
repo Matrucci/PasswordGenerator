@@ -13,6 +13,9 @@ namespace Password_Generator
 
         private int strength;
 
+        /*********************
+         * Strength property.
+         *********************/
         public int Strength
         {
             get { return this.strength; }
@@ -29,6 +32,9 @@ namespace Password_Generator
             }
         }
 
+        /*****************************************
+         * Checking the strength of the password.
+         ****************************************/
         public void CheckPassword(string password)
         {
             int flag = 0;

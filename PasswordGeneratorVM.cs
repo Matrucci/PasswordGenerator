@@ -11,18 +11,16 @@ namespace Password_Generator
     class PasswordGeneratorVM : INotifyPropertyChanged
     {
         private string userPassword;
-        private string generatedPassword;
-        private bool isWeak;
-        private bool isNormal;
-        private bool isModerate;
-        private bool isStrong;
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         private MainWindow mainView;
         private PasswordGeneratorModel passwordGeneratorModel;
         private PasswordValidationModel passwordValidationModel;
 
+        /*******************************************************
+         * Creating the models and binding to property changed.
+         ******************************************************/
         public PasswordGeneratorVM(MainWindow mainWindow)
         {
             this.mainView = mainWindow;
@@ -32,6 +30,9 @@ namespace Password_Generator
             this.passwordValidationModel.PropertyChanged += OnPropertyChanged;
         }
 
+        /***********************
+         * Activating the model.
+         ***********************/
         public void GeneratePasswordClicked(int length, bool allowUpperCase, bool allowNumbers, bool allowSymbols)
         {
             this.passwordGeneratorModel.GeneratePassword(length, allowUpperCase, allowNumbers, allowSymbols);
@@ -54,21 +55,29 @@ namespace Password_Generator
                 }
                 if (this.passwordValidationModel.Strength == 1)
                 {
+                    this.PropertyChanged(this, new PropertyChangedEventArgs("IsWeak"));
                     this.PropertyChanged(this, new PropertyChangedEventArgs("IsNormal"));
                     this.PropertyChanged(this, new PropertyChangedEventArgs("IsModerate"));
                     this.PropertyChanged(this, new PropertyChangedEventArgs("IsStrong"));
                 }
                 if (this.passwordValidationModel.Strength == 2)
                 {
+                    this.PropertyChanged(this, new PropertyChangedEventArgs("IsWeak"));
+                    this.PropertyChanged(this, new PropertyChangedEventArgs("IsNormal"));
                     this.PropertyChanged(this, new PropertyChangedEventArgs("IsModerate"));
                     this.PropertyChanged(this, new PropertyChangedEventArgs("IsStrong"));
                 }
                 if (this.passwordValidationModel.Strength == 3)
                 {
+                    this.PropertyChanged(this, new PropertyChangedEventArgs("IsWeak"));
+                    this.PropertyChanged(this, new PropertyChangedEventArgs("IsNormal"));
+                    this.PropertyChanged(this, new PropertyChangedEventArgs("IsModerate"));
                     this.PropertyChanged(this, new PropertyChangedEventArgs("IsStrong"));
                 }
-\            }
+            }
         }
+
+        //Setting up properties for DataBinding.
 
         public string UserPassword
         {
@@ -104,11 +113,7 @@ namespace Password_Generator
                 }
                 return Visibility.Hidden;
             }
-            set
-            {
-               
-            }
-        }
+          }
 
         public Visibility IsNormal
         {
@@ -120,7 +125,6 @@ namespace Password_Generator
                 }
                 return Visibility.Hidden;
             }
-            set { }
         }
 
         public Visibility IsModerate
@@ -133,7 +137,6 @@ namespace Password_Generator
                 }
                 return Visibility.Hidden;
             }
-            set { }
         }
         public Visibility IsStrong
         {
@@ -145,7 +148,6 @@ namespace Password_Generator
                 }
                 return Visibility.Hidden;
             }
-            set { }
         }
 
     }
