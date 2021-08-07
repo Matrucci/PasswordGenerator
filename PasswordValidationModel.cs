@@ -38,7 +38,7 @@ namespace Password_Generator
         public void CheckPassword(string password)
         {
             int flag = 0;
-            string temp = password.Replace("-", "");
+            string temp = password.Replace("-", "").Replace(" ", "");
             if (temp.Length < 5 || temp == null)
             {
                 Strength = 0;
